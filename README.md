@@ -14,6 +14,7 @@ console ).
 - JavaScript
 
 ## Links
+[Link to Live Site](https://cloudofalemar.github.io/Employee-Payroll-Tracker/)
 
 ## Screenshot
 ![Employee Payroll Tracker Screenshot](./assets/images/employee-payroll-tracker-screenshot.png)
