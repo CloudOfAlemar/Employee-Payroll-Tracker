@@ -4,35 +4,71 @@ const addEmployeesBtn = document.querySelector('#add-employees-btn');
 // Collect employee data
 const collectEmployees = function() {
   // TODO: Get user input to create and return an array of employee objects
+
+  // Collect employees
   const employees = [];
+
+  // Continue collecting while true
   let keepCollecting = true;
   while( keepCollecting ) {
+
+    // Build employee object
     const employeeObj = {};
+
+    // First name ( if null, break from loop )
     let fname = prompt( "Enter first name?" );
     if( !fname ) break;
+
+    // Last name ( if null, break from loop )
     let lname = prompt( "Enter last name" );
     if( !lname ) break;
+
+    // Salary ( if null, break from loop )
     let salary = prompt( "Enter salary" );
     if( !salary ) break;
 
+    // add properties to object
     employeeObj.firstName = fname;
     employeeObj.lastName = lname;
-    employeeObj.salary = isNaN( Number( salary ) ) ? 0 : salary ;
+    employeeObj.salary = isNaN( Number( salary ) ) ? 0 : Number( salary );
     employees.push( employeeObj );
 
+    // Set keep collecting to false if addEmployee is false
     const addEmployee = confirm( "Do you want to add another employee?" );
-    if( !addEmployee ) {
-      keepCollecting = false;
-    }
+    if( !addEmployee ) keepCollecting = false;
   }
+
+  // return employees array
   return employees;
 }
-
-console.log( collectEmployees() );
 
 // Display the average salary
 const displayAverageSalary = function(employeesArray) {
   // TODO: Calculate and display the average salary
+
+  // Store total amount of employees
+  const totalEmployees = employeesArray.length;
+
+  // Start the total salary at 0
+  let total = 0;
+
+  // Sum up all salaries
+  for( const { salary } of employeesArray ) {
+    total += salary;
+  }
+
+  // Store the average of the salaries
+  const average = total / totalEmployees;
+
+  // Store the USD Currency style of the average salary
+  const usCurrency = average.toLocaleString("en-US",{
+    style:"currency",
+    currency:"USD"
+  });
+
+  // Store average text to display in console
+  const averageText = `The average employee salary between our ${ totalEmployees } employee(s) is ${ usCurrency }`
+  console.log( averageText );
 }
 
 // Select a random employee
