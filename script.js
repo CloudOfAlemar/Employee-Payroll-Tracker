@@ -61,13 +61,13 @@ const displayAverageSalary = function(employeesArray) {
   const average = total / totalEmployees;
 
   // Store the USD Currency style of the average salary
-  const usCurrency = average.toLocaleString("en-US",{
+  const usCurrency = average ? average.toLocaleString("en-US",{
     style:"currency",
     currency:"USD"
-  });
+  }) : "$0";
 
   // Store average text to display in console
-  const averageText = `The average employee salary between our ${ totalEmployees } employee(s) is ${ usCurrency }`
+  const averageText = `The average employee salary between our ${ totalEmployees } employee(s) is ${ usCurrency }`;
   console.log( averageText );
 }
 
